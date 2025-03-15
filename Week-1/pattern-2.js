@@ -6,7 +6,8 @@
 function left_side(numberOfRows,row,pattern){
     //if row = 4; columns - 3,2,1,0  --- columns - 1 to numberofRows-row
     for(column =1 ; column<=numberOfRows-row;column++){
-        pattern+="_"
+        pattern+=" "
+
     }
     return pattern
 }
@@ -26,7 +27,7 @@ function createPattern(numberOfRows){
         // console.log(left_pattern)
         mid_pattern = mid_side(numberOfRows,row,pattern)
         // console.log(mid_pattern)
-        pattern = left_pattern + mid_pattern + left_pattern
+        pattern = left_pattern + mid_pattern 
         console.log(pattern+"\n")
     }
 }
