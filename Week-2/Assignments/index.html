@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Todo App</title>
+    <link rel="stylesheet" href="styles.css">
+    <script defer src="script.js"></script>
+</head>
+<body>
+    <header>
+        <h1>Todo App</h1>
+    </header>
+    <main>
+        <section>
+            <h2>Tasks</h2>
+            <input type="text" id="taskInput" placeholder="Add a new task">
+            <input type="text" id="taskInput" placeholder="Add a description">
+            <button onclick="addTask()">Add</button>
+            <ul id="taskList"></ul>
+        </section>
+    </main>
+    <footer>
+        <p>&copy; 2025 Todo App</p>
+    </footer>
+    <script>
+        function show_content(data){
+            console.log(data)
+        }
+        function callback(res){
+            res.json().then(show_content)
+        }
+       function addTask(){
+        fetch("http://localhost:3000/todos/",{
+            method : 'POST',
+            body:{
+                title : 
+            }
+        }).then(callback)
+       } 
+    </script>
+</body>
+</html>

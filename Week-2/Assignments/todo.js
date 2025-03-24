@@ -42,6 +42,7 @@
   const express = require('express');
   const bodyParser = require('body-parser');
   const fs = require("fs")
+  const path = require('path')
   const port = 3000
   
   const app = express();
@@ -95,6 +96,10 @@ app.put('/todos/:id',(req,res)=>{
     
 })
 app.delete('/todos/:id')
+
+app.get('/',(req,res)=>{
+  res.sendfile(path.join(__dirname,'index.html'))
+})
 
 app.listen(port, ()=>{
     console.log("listening to port: " + port)
