@@ -15,28 +15,67 @@
         <section>
             <h2>Tasks</h2>
             <input type="text" id="taskInput" placeholder="Add a new task">
-            <input type="text" id="taskInput" placeholder="Add a description">
+            <input type="text" id="description" placeholder="Add a description">
             <button onclick="addTask()">Add</button>
             <ul id="taskList"></ul>
+            <div id="todos"></div>
         </section>
     </main>
     <footer>
         <p>&copy; 2025 Todo App</p>
     </footer>
     <script>
-        function show_content(data){
+        function show(data){
             console.log(data)
+            console.log(data.length)
+            for(i=0;i<data.length;i++){
+            let a =document.createElement("div")
+            let grandchildelement = document.createElement("span")
+            grandchildelement.innerHTML = JSON.stringify(data[i].title)
+            let break1 = document.createElement("br")
+            let grandchildelement2 = document.createElement("span")
+            grandchildelement2.innerHTML = JSON.stringify(data[i].description)
+            let break2 = document.createElement("br")
+            let grandchildelement3 = document.createElement("button")
+            grandchildelement3.innerHTML = "Delete"
+            a.appendChild(grandchildelement)
+            a.appendChild(break1)
+            a.appendChild(grandchildelement2)
+            a.appendChild(grandchildelement3)
+            a.appendChild(break2)
+            a.appendChild(break2)
+            document.getElementById("todos").appendChild(a)
+            }
         }
         function callback(res){
-            res.json().then(show_content)
+            res.json().then(show)
         }
+
+        function show_content(){
+            fetch("http://localhost:3000/todos",{
+                method: "GET"
+            }).then(callback)
+        }
+        show_content()
+      
        function addTask(){
-        fetch("http://localhost:3000/todos/",{
-            method : 'POST',
-            body:{
-                title : 
-            }
-        }).then(callback)
+        let task = document.getElementById("taskInput").value;
+        let description= document.getElementById("description").value;
+        console.log(task)
+        console.log(description)
+        for(i=1;i<=5;i++){
+            fetch("http://localhost:3000/todos/",{
+                method : 'POST',
+                body:JSON.stringify({
+                    "title": task,
+                    "description": description
+                }),
+                headers :{
+                    "Content-Type": "application/json"
+                }
+            }).then((res)=> res.json()).then((data)=>console.log(data))
+
+        }
        } 
     </script>
 </body>

@@ -43,12 +43,14 @@
   const bodyParser = require('body-parser');
   const fs = require("fs")
   const path = require('path')
+  const cors= require('cors')
   const port = 3000
   
   const app = express();
   const dict = [] 
   const data = JSON.parse(fs.readFileSync('todo.txt'))
   app.use(bodyParser.json());
+  app.use(cors())
 
 
 app.get('/todos',(req,res)=>{
@@ -72,7 +74,7 @@ app.post('/todos/',(req,res)=>{
 
     dict.push(ToDo)
     const jsonData = JSON.stringify(dict, null, 2); // Pretty print with indentation
-    fs.writeFileSync('todo.txt',jsonData) 
+    fs.appendFileSync('todo.txt',jsonData) 
     console.log(dict)
     res.json(dict)
 })
@@ -90,7 +92,7 @@ app.put('/todos/:id',(req,res)=>{
 
     data[targetindex] =new_data
     const jsonData = JSON.stringify(data,null,2)
-    fs.writeFileSync('todo.txt',jsonData)
+    fs.appendFileSync('todo.txt',jsonData)
     console.log(data[targetindex])
     res.json(data)
     
@@ -98,7 +100,7 @@ app.put('/todos/:id',(req,res)=>{
 app.delete('/todos/:id')
 
 app.get('/',(req,res)=>{
-  res.sendfile(path.join(__dirname,'index.html'))
+  res.sendFile(path.join(__dirname,'index.html'))
 })
 
 app.listen(port, ()=>{

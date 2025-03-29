@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quiz</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Quiz Questions</h1>
+        <form>
+            <div class="question">
+                <p>1. What is the capital of France?</p>
+                <label><input type="radio" name="q1"> Paris</label>
+                <label><input type="radio" name="q1"> Berlin</label>
+                <label><input type="radio" name="q1"> Madrid</label>
+                <label><input type="radio" name="q1"> Rome</label>
+            </div>
+            <div class="question">
+                <p>2. What is 2 + 2?</p>
+                <label><input type="radio" name="q2"> 3</label>
+                <label><input type="radio" name="q2"> 4</label>
+                <label><input type="radio" name="q2"> 5</label>
+                <label><input type="radio" name="q2"> 6</label>
+            </div>
+            <div class="question">
+                <p>3. Which planet is known as the Red Planet?</p>
+                <label><input type="radio" name="q3"> Earth</label>
+                <label><input type="radio" name="q3"> Mars</label>
+                <label><input type="radio" name="q3"> Jupiter</label>
+                <label><input type="radio" name="q3"> Venus</label>
+            </div>
+            <button type="submit" class="submit-btn">Submit</button>
+        </form>
+        <button onclick="btnsend()" class="submit-btn">onclick</button>
+    </div>
+</body>
+<script>
+    
+    let questions = document.getElementsByClassName("question")
+    let current_index = 0
+
+    function hide_previous_question(question){
+        question.style.display = "none"
+    }
+    function show_current_question(question){
+        question.style.display = "inline"
+    }
+
+    function btnsend(){
+        let previous_question = current_index
+        current_index +=1;
+        let current_question = current_index
+        if(current_index>questions.length-1){
+            current_index = 0;
+            current_question=0;
+        }
+        hide_previous_question(questions[previous_question])
+        show_current_question(questions[current_question])
+    }
+    window.onload = (event) => {
+        questions[0].style.display = "block"
+        console.log("page is fully loaded");
+      };
+
+
+
+</script>
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        background: linear-gradient(to right, #667eea, #764ba2);
+        text-align: center;
+        padding: 20px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        margin: 0;
+    }
+    .container {
+        background: white;
+        padding: 30px;
+        max-width: 500px;
+        margin: auto;
+        border-radius: 15px;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    }
+    .start-btn, .submit-btn {
+        display: inline-block;
+        padding: 12px 24px;
+        margin-top: 20px;
+        text-decoration: none;
+        background-color: #007BFF;
+        color: white;
+        border-radius: 8px;
+        border: none;
+        cursor: pointer;
+        font-size: 16px;
+        transition: 0.3s;
+    }
+    .start-btn:hover, .submit-btn:hover {
+        background-color: #0056b3;
+    }
+    .question {
+        text-align: left;
+        margin: 15px 0;
+        display: none;
+    }
+    label {
+        display: block;
+        margin: 8px 0;
+    }
+    
+</style>
+</html>

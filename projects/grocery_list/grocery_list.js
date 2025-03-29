@@ -4,10 +4,19 @@ const fs  = require("fs")
 const bodyParser = require("body-parser")
 const app = express()
 app.use(bodyParser.json())
+const cors = require("cors")
+app.use(cors())
+
+
 const list = []
 // list = [{item: item1, due_date: date},{item:item2, due_date: date2}]
 json_path= path.join(__dirname,"grocery_list.json")
 data  =JSON.parse(fs.readFileSync(json_path))
+
+app.get('/',(req,res)=>{
+    res.sendFile(path.join(__dirname,'index.html'))
+})
+
 app.get('/list',(req,res)=>{
     res.json(data)
 })   //list all the items in the grocery list

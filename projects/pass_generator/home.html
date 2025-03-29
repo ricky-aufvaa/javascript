@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Password Generator</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+    <div class="container">
+        <h1>Random Password Generator</h1>
+        <input type="text" id="password" readonly placeholder="Your password will appear here">
+        <button onclick="generate()" id="generate">Generate Password</button>
+    </div>
+
+</body>
+<script>
+    function callback(data){
+        show_password(data["password"])
+    }
+    function generate(){
+        fetch('http://localhost:3000/generate',{
+            method : "GET"
+        })
+        .then((res)=>{
+            return res.json()
+        })
+        .then(callback)
+    }
+    function show_password(password){
+        let inputtext = document.getElementById("password")
+        inputtext.placeholder  = password 
+
+    }
+      
+        
+</script>
+</html>
