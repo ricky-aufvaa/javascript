@@ -1,0 +1,73 @@
+/* Importing Google Font */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap');
+
+/* Reset & Global Styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+
+/* Background Gradient */
+body {
+    background: linear-gradient(135deg, #667eea, #764ba2);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    padding: 20px;
+}
+
+/* Centering App */
+.app-container {
+    width: 420px;
+    background: rgba(255, 255, 255, 0.15);
+    backdrop-filter: blur(10px);
+    padding: 25px;
+    border-radius: 16px;
+    box-shadow: 0px 5px 20px rgba(0, 0, 0, 0.2);
+    text-align: center;
+    color: white;
+}
+
+/* Title */
+h1 {
+    font-size: 24px;
+    font-weight: 600;
+    margin-bottom: 20px;
+    color: white;
+}
+
+/* Add Note Button */
+#addNoteBtn {
+    background: #ff7eb3;
+    color: white;
+    border: none;
+    padding: 12px 20px;
+    cursor: pointer;
+    border-radius: 50px;
+    font-size: 16px;
+    transition: 0.3s ease-in-out;
+    box-shadow: 0px 3px 8px rgba(255, 126, 179, 0.3);
+}
+
+#addNoteBtn:hover {
+    background: #ff5277;
+    box-shadow: 0px 5px 15px rgba(255, 82, 119, 0.5);
+}
+
+/* Notes Container */
+#notesContainer {
+    margin-top: 20px;
+    max-height: 300px;
+    overflow-y: auto;
+    padding-right: 10px;
+}
+
+/* Single Note Styling */
+.note {
+    background: rgba(255, 255, 255, 0.2);
+    border-left: 4px solid #ff7eb3;
+    padding: 12px;
+    margin: 12
